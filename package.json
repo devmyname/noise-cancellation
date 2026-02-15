@@ -1,0 +1,63 @@
+{
+  "name": "denoise-ai",
+  "productName": "Denoise AI",
+  "version": "1.0.0",
+  "description": "Denoise AI - AI noise cancellation application powered by Electron",
+  "author": "Denoise AI",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "dev": "electron . --dev",
+    "backup": "node tools/backup.js",
+    "dist": "electron-builder --win",
+    "dist:portable": "electron-builder --win portable",
+    "dist:dir": "electron-builder --win --dir"
+  },
+  "build": {
+    "appId": "com.denoiseai.app",
+    "productName": "Denoise AI",
+    "copyright": "Copyright © 2026 Denoise AI",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*"
+    ],
+    "asarUnpack": [
+      "renderer/worklets/*.wasm",
+      "renderer/models/**/*"
+    ],
+    "win": {
+      "icon": "build/icon.ico",
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        }
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico",
+      "installerHeaderIcon": "build/icon.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Denoise AI",
+      "include": "build/installer.nsh"
+    }
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1",
+    "electron": "^28.0.0",
+    "electron-builder": "^26.7.0"
+  },
+  "dependencies": {
+    "@sapphi-red/web-noise-suppressor": "^0.3.5",
+    "@shiguredo/rnnoise-wasm": "^2025.1.5",
+    "deepfilternet3-noise-filter": "^1.2.1"
+  }
+}
