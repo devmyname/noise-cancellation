@@ -175,34 +175,7 @@ npm run dist
 - **RAM:** Minimum 4 GB
 - **İşlemci:** Modern x64 işlemci (SIMD desteği önerilir)
 
----
 
-## 📁 Project Structure / Proje Yapısı
-
-```
-denoise-ai/
-├── main.js                  # Electron main process
-├── preload.js               # Context bridge (IPC)
-├── package.json             # Dependencies & build config
-├── build/
-│   ├── icon.ico/png         # App icon
-│   ├── installer.nsh        # NSIS custom installer script
-│   └── VBCABLE_Driver_Pack.zip
-├── renderer/
-│   ├── app.js               # Core audio pipeline & UI
-│   ├── deepfilter-core.js   # DeepFilterNet3 loader
-│   ├── i18n.js              # EN/TR translations
-│   ├── index.html           # UI layout
-│   ├── styles.css           # Dark theme styles
-│   ├── worklets/            # AudioWorklet processors + WASM
-│   └── models/deepfilter/   # DeepFilterNet3 ONNX model
-├── tools/
-│   └── backup.js            # Project backup utility
-└── video/
-    └── demo.mp4             # Demo video
-```
-
----
 
 ## � Donate / Bağış
 
@@ -222,6 +195,7 @@ TLApWJzFVDTDHLtSL18atRuzhEgjzirtAZ
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 Bu proje MIT Lisansı ile lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+
 
 
 
