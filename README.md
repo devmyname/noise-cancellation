@@ -21,7 +21,7 @@
 
 ## 🎬 Demo
 
-<video src="video/demo.mp4" controls width="600"></video>
+<video src="./video/demo.mp4" controls width="600"></video>
 
 
 ---
@@ -222,6 +222,7 @@ TLApWJzFVDTDHLtSL18atRuzhEgjzirtAZ
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 Bu proje MIT Lisansı ile lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+
 
 
 
