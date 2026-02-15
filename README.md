@@ -59,7 +59,7 @@
 
 ```bash
 # Clone the repository
-git clone https://github.com/YOUR_USERNAME/denoise-ai.git
+git clone https://github.com/devmyname/noise-cancellation.git
 cd denoise-ai
 
 # Install dependencies
@@ -140,7 +140,7 @@ npm run dist
 
 ```bash
 # Repoyu klonlayın
-git clone https://github.com/YOUR_USERNAME/denoise-ai.git
+git clone https://github.com/devmyname/noise-cancellation.git
 cd denoise-ai
 
 # Bağımlılıkları yükleyin
@@ -222,5 +222,6 @@ TLApWJzFVDTDHLtSL18atRuzhEgjzirtAZ
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 Bu proje MIT Lisansı ile lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+
 
 
