@@ -21,9 +21,8 @@
 
 ## 🎬 Demo
 
-https://github.com/user-attachments/assets/demo.mp4
+https://github.com/devmyname/noise-cancellation/raw/refs/heads/main/video/demo.mp4
 
-> *Upload `video/demo.mp4` to your GitHub repository and replace the link above with the actual URL, or drag & drop the video into a GitHub issue/release to get an embeddable link.*
 
 ---
 
@@ -223,3 +222,4 @@ TLApWJzFVDTDHLtSL18atRuzhEgjzirtAZ
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 Bu proje MIT Lisansı ile lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+
