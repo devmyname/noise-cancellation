@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Denoise AI</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Title Bar -->
+  <div class="titlebar">
+    <div class="titlebar-title" data-i18n="app.title">Denoise AI</div>
+    <div class="titlebar-controls">
+      <select class="lang-select" id="lang-select" aria-label="Language">
+        <option value="en">EN</option>
+        <option value="tr">TR</option>
+      </select>
+      <button class="donate-btn" id="btn-donate" data-i18n="donate.btn" title="Donate (USDT TRC20)">💜 Donate</button>
+      <button class="titlebar-btn minimize" id="btn-minimize">─</button>
+      <button class="titlebar-btn close" id="btn-close">✕</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="app-container">
+    <!-- Status + NC Toggle -->
+    <div class="status-bar">
+      <div class="status-left">
+        <div class="status-dot" id="status-dot"></div>
+        <span class="status-text" id="status-text">Ready</span>
+      </div>
+      <label class="toggle-switch">
+        <input type="checkbox" id="nc-toggle" checked>
+        <span class="toggle-slider"></span>
+      </label>
+    </div>
+
+    <!-- AI Model -->
+    <div class="section ai-section">
+      <div class="ai-header">
+        <span class="ai-icon">🧠</span>
+        <span class="ai-title" data-i18n="ai.title">AI Model</span>
+        <select class="model-select" id="model-select">
+          <option value="shiguredo" data-i18n="model.shiguredo" selected>Shiguredo RNNoise (Default)</option>
+          <option value="rnnoise" data-i18n="model.rnnoise">RNNoise Sapphi (Low Latency)</option>
+          <option value="deepfilter" data-i18n="model.deepfilter">DeepFilterNet3 (High Quality)</option>
+        </select>
+        <span class="ai-badge" id="ai-status">Ready</span>
+      </div>
+      <div class="ai-details">
+        <div class="ai-row">
+          <span class="ai-key" data-i18n="ai.architecture">Architecture</span>
+          <span class="ai-val" id="ai-arch">--</span>
+        </div>
+        <div class="ai-row">
+          <span class="ai-key" data-i18n="ai.parameters">Parameters</span>
+          <span class="ai-val" id="ai-params">--</span>
+        </div>
+        <div class="ai-row">
+          <span class="ai-key">VAD</span>
+          <span class="vad-ind" id="vad-dot">●</span>
+          <span class="ai-val" id="vad-text">--</span>
+        </div>
+      </div>
+
+      <!-- DeepFilter warmup status (visible only during first seconds) -->
+      <div class="model-warmup" id="model-warmup" style="display:none;" data-i18n="model.loading">
+        Loading model...
+      </div>
+    </div>
+
+    <!-- DeepFilter Suppression Level (visible only when DeepFilter selected) -->
+    <div class="section df-settings" id="df-settings" style="display:none;">
+      <div class="df-slider-row">
+        <span class="df-label" data-i18n="df.suppression">Suppression</span>
+        <input type="range" id="df-level" class="df-slider" min="0" max="100" value="80" step="1">
+        <span class="df-value" id="df-level-value">80</span>
+      </div>
+    </div>
+
+    <!-- Level Meters -->
+    <div class="section levels-section">
+      <div class="level-group">
+        <div class="level-label"><span data-i18n="level.input">Input</span><span class="level-value" id="input-db">-∞ dB</span></div>
+        <div class="level-bar-container"><div class="level-bar input-bar" id="input-level"></div></div>
+      </div>
+      <div class="level-group">
+        <div class="level-label"><span data-i18n="level.output">Output</span><span class="level-value" id="output-db">-∞ dB</span></div>
+        <div class="level-bar-container"><div class="level-bar output-bar" id="output-level"></div></div>
+      </div>
+      <div class="level-group">
+        <div class="level-label"><span data-i18n="level.noise">Noise</span><span class="level-value" id="noise-db">--</span></div>
+        <div class="level-bar-container"><div class="level-bar noise-bar" id="noise-level"></div></div>
+      </div>
+      <div class="reduction-row">
+        <span data-i18n="level.reduction">Reduction:</span>
+        <span class="reduction-value" id="reduction-amount">-- dB</span>
+      </div>
+    </div>
+
+    <!-- Input Microphone -->
+    <div class="section device-section">
+      <div class="section-label" data-i18n="device.inputLabel">Microphone Input</div>
+      <div class="device-row">
+        <span class="device-label-icon">🎤</span>
+        <select class="device-select" id="mic-select"><option value="">Loading...</option></select>
+      </div>
+    </div>
+
+    <!-- Microphone Gain -->
+    <div class="section df-settings" id="mic-gain-settings">
+      <div class="df-slider-row">
+        <span class="df-label" data-i18n="gain.label">Gain</span>
+        <input type="range" id="mic-gain" class="df-slider" min="0" max="24" value="0" step="1">
+        <span class="df-value" id="mic-gain-value">+0 dB</span>
+      </div>
+    </div>
+
+    <!-- Virtual Microphone Output (VB-Cable) -->
+    <div class="section device-section virtual-mic-section">
+      <div class="section-label" data-i18n="device.outputLabel">Microphone Output</div>
+      <div class="device-row">
+        <span class="device-label-icon">🔌</span>
+        <select class="device-select virtual-mic-select" id="output-device">
+          <option value="">Select Virtual Cable...</option>
+        </select>
+      </div>
+      <div class="virtual-mic-help" id="virtual-mic-help" data-i18n="vbcable.help" data-i18n-html>
+        VB-Cable required. After installing, "CABLE Input" appears here.<br>
+        Select "CABLE Output" as microphone in Discord/Zoom.
+      </div>
+      <div class="virtual-mic-status" id="virtual-mic-status"></div>
+    </div>
+
+    <!-- Monitor (self-listening through headphones) -->
+    <div class="section monitor-section">
+      <button class="btn btn-monitor" id="monitor-btn" data-i18n="monitor.listen">🎧 Listen</button>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls-row">
+      <button class="btn btn-primary" id="btn-start">▶ Start</button>
+    </div>
+
+    <!-- Info -->
+    <div class="info-text" id="info-text">Grant microphone permission and press "Start".</div>
+
+    <!-- Waveform -->
+    <div class="waveform-wrap">
+      <canvas id="waveform-canvas" width="346" height="50"></canvas>
+    </div>
+  </div>
+
+  <script src="i18n.js"></script>
+  <script src="deepfilter-core.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
