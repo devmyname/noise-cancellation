@@ -21,7 +21,7 @@
 
 ## 🎬 Demo
 
-<video src="https://github.com/devmyname/noise-cancellation/raw/refs/heads/main/video/demo.mp4" controls width="600"></video>
+<img src="video/{CF0D7EF2-F9D7-4C6F-A3C4-72BB01DF3607}.png" alt="Denoise AI" width="377" height="640">
 
 
 ---
@@ -195,6 +195,7 @@ TLApWJzFVDTDHLtSL18atRuzhEgjzirtAZ
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 Bu proje MIT Lisansı ile lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+
 
 
 
