@@ -17,14 +17,13 @@
   <img src="https://img.shields.io/badge/License-MIT-green" alt="License">
 </p>
 
----
 
 ## 🎬 Demo
 <p align="center">
 <img src="video/{CF0D7EF2-F9D7-4C6F-A3C4-72BB01DF3607}.png" alt="Denoise AI" width="377" height="640">
 </p>
 
----
+
 
 ## 📖 English
 
@@ -195,6 +194,7 @@ TLApWJzFVDTDHLtSL18atRuzhEgjzirtAZ
 This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
 
 Bu proje MIT Lisansı ile lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasına bakın.
+
 
 
 
